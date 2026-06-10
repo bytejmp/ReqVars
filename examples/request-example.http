@@ -1,0 +1,42 @@
+### Example: API request with placeholders
+### The user writes this in Burp Repeater:
+
+POST /api/v1/users/profile HTTP/1.1
+Host: api.target.com
+Authorization: Bearer <token>
+X-Api-Key: <api_key>
+Cookie: session=<session>
+Content-Type: application/json
+
+{
+  "name": "test",
+  "csrf": "<csrf_token>"
+}
+
+### What gets sent to the server (with substitution):
+
+POST /api/v1/users/profile HTTP/1.1
+Host: api.target.com
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.signature
+X-Api-Key: sk-proj-abc123def456ghi789
+Cookie: session=s%3AaBcDeFgHiJkLmNoPqRsTuVwXyZ.signature
+Content-Type: application/json
+
+{
+  "name": "test",
+  "csrf": "a1b2c3d4e5f6g7h8i9j0"
+}
+
+### What the user still sees in Repeater (unchanged):
+
+POST /api/v1/users/profile HTTP/1.1
+Host: api.target.com
+Authorization: Bearer <token>
+X-Api-Key: <api_key>
+Cookie: session=<session>
+Content-Type: application/json
+
+{
+  "name": "test",
+  "csrf": "<csrf_token>"
+}
