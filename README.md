@@ -24,6 +24,8 @@ Burp Suite extension that substitutes placeholders in HTTP requests with real va
 
 Your Repeater editor always shows placeholders — safe for screenshots, recordings, and reports.
 
+![ReqVars Demo](docs/demo.gif)
+
 ## Features
 
 - **Placeholder substitution** — `<token>`, `<api_key>`, `<session>` replaced transparently on send
